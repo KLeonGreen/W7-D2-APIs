@@ -17,22 +17,15 @@ fetch("https://api.pexels.com/v1/search?query=Ocean", options)
       const photos = data.photos;
       for (let p = 0; p < photos.length; p++) {
         const imageDisplayerContainer = document.createElement("div");
-        imageDisplayerContainer.classList.add("card-img-top");
+        imageDisplayerContainer.classList.add("image-container");
+        imageDisplayerContainer.classList.add("img-top");
         const imageDisplayer = document.createElement("img");
         imageDisplayer.src = photos[p].src.original;
         imageDisplayerContainer.appendChild(imageDisplayer);
+        cards[p].appendChild(imageDisplayerContainer);
+        imageSection[p].remove();
+
         console.log(photos[p].src.original);
-
-        for (let image of imageSection) {
-          image.remove();
-
-          //   image.innerHTML = imageDisplayerContainer;
-          //   image.appendChild(imageDisplayerContainer);
-        }
-        for (let card of cards) {
-          card.appendChild(imageDisplayerContainer);
-          // imageDisplayerContainer.classList.add("card-img-top");
-        }
       }
     });
   });
